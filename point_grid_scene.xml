@@ -1,0 +1,46 @@
+<scene version="3.0.0">
+    <!-- Todo: replace with something which sends rays from the light to the camera rather than from the camera -->
+    <integrator type="path">
+        <integer name="max_depth" value="8"/>
+    </integrator>
+
+    <sensor type="thinlens">
+        <!-- Rotate the camera around the Y axis by 180 degrees -->
+        <transform name="to_world">
+            <rotate y="1" angle="180"/>
+        </transform>
+        <float name="fov" value="70"/>
+        <float name="aperture_radius" value="0.2"/>
+
+        <!-- Render with 32 samples per pixel using a basic
+             independent sampling strategy -->
+        <sampler type="independent">
+            <integer name="sample_count" value="32"/>
+        </sampler>
+
+        <!-- Generate an EXR image at HD resolution -->
+        <film type="hdrfilm">
+            <integer name="width" value="1920"/>
+            <integer name="height" value="1080"/>
+        </film>
+    </sensor>
+
+    <emitter type="point">
+        <rgb name="intensity" value="1"/>
+        <point name="position" x="0" y="0" z="-2"/>
+    </emitter>
+    <emitter type="point">
+        <rgb name="intensity" value="1"/>
+        <point name="position" x="1" y="0" z="-2"/>
+    </emitter>
+    <emitter type="point">
+        <rgb name="intensity" value="1"/>
+        <point name="position" x="1" y="1" z="-2"/>
+    </emitter>
+    <emitter type="point">
+        <rgb name="intensity" value="1"/>
+        <point name="position" x="0" y="1" z="-2"/>
+    </emitter>
+
+    <shape type="sphere"/>
+</scene>
